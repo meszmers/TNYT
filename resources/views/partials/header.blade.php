@@ -18,10 +18,9 @@
     @endforeach
     @if(\Illuminate\Support\Facades\Auth::check())
         <h2>
-            <form action="{{ url('auth/logout') }}" method="post">
-                <input type="submit" value="Logout" />
-                @csrf
-            </form>
+            <a href="/logout" class="menu-element login-button">
+                Logout
+            </a>
         </h2>
     @else
         <div style="background: greenyellow; border-radius: 10px">
@@ -33,5 +32,7 @@
         </div>
     @endif
 </div>
+
+
 
 

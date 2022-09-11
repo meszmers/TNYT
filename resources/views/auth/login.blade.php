@@ -10,7 +10,7 @@
         </h1>
         <div style="margin: auto; text-align: center; width: 200px; margin-bottom: 50px">
             <a href="{{ url('auth/google') }}">
-                <img width="250px" src="../../images/btn_google_signin_light.png">
+                <img alt="" width="250px" src="../../google_login.png">
             </a>
         </div>
         <div>

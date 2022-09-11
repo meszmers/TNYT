@@ -6,7 +6,7 @@
 @section('body')
     <script src="{{ URL::asset('js/create-test.js') }}"></script>
     <link href="{{ URL::asset('css/create-test.css') }}" rel="stylesheet">
-    <div style="border: 5px solid black; padding: 20px">
+    <div id="type-of-test" style="border: 5px solid black; padding: 20px">
         How many variations?
         <div style="display: flex; gap: 20px; justify-content: center">
             @foreach(config('menu')['tinder-image-count'] as $option)
@@ -35,6 +35,7 @@
 <script type="text/javascript">
     function load_main_content(count)
     {
+        document.getElementById('type-of-test').style.display = 'none';
         $('#images').load('/api/v1/image-uploads?count=' + count);
     }
 </script>

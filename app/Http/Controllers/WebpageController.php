@@ -7,6 +7,8 @@ use App\Models\TestCase;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 
 class WebpageController extends Controller
@@ -33,8 +35,12 @@ class WebpageController extends Controller
 
     }
 
-    public function login(): Factory|View|Application
+    public function login(): View|Factory|Redirector|RedirectResponse|Application
     {
+        if (Auth::check()) {
+            return redirect('/home');
+        }
+
         return view('auth.login');
     }
 

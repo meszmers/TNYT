@@ -18,13 +18,35 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/**
+ *
+ * Authentication/Login/Users
+ *
+ */
+
+Route::get('/', function () {
+    return redirect('/login');
+});
+
+
+Route::get('/login', [WebpageController::class, 'login'])->name('login');
+Route::post('/login', [UserController::class, 'signUp']);
+
+Route::get('/register', [WebpageController::class, 'register']);
+Route::post('/register', [UserController::class, 'registerUser']);
+
+Route::get('auth/google', [GoogleSocialiteController::class, 'redirectToGoogle']);
+Route::get('callback/google', [GoogleSocialiteController::class, 'handleCallback']);
+
+Route::get('/logout', [UserController::class, 'logout']);
+
 
 
 
 
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('/', [WebpageController::class, 'index']);
+    Route::get('/home', [WebpageController::class, 'index']);
 
     Route::get('/test', [TestController::class, 'test']);
     Route::post('/test', [TestController::class, 'makeTest']);
@@ -37,31 +59,6 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/test-landing', [WebpageController::class, 'testLanding']);
-
-
-
-
-/**
- *
- * Authentication/Login/Users
- *
- */
-
-Route::get('auth/google', [GoogleSocialiteController::class, 'redirectToGoogle']);
-Route::get('callback/google', [GoogleSocialiteController::class, 'handleCallback']);
-
-Route::get('/login', [WebpageController::class, 'login'])->name('login');
-Route::post('/login', [UserController::class, 'signUp']);
-
-Route::get('/register', [WebpageController::class, 'register']);
-Route::post('/register', [UserController::class, 'registerUser']);
-
-Route::post('/auth/logout', [UserController::class, 'logout']);
-
-
-
-
-Route::get('api/v1/header-menu', [ExportController::class, 'exportMenu']);
 
 
 Route::group(['prefix' => 'api/v1'], function () {
