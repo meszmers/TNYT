@@ -20,6 +20,7 @@ class WebpageController extends Controller
             ->all();
 
         $test = TestCase::where('type_test_id', 1)
+            ->where('user_id', '!=', Auth::id())
             ->whereNotIn('id', $doneTests)
             ->with('images')
             ->get();
@@ -27,6 +28,7 @@ class WebpageController extends Controller
         if (count($test)) {
             $test->random()->get();
         } else {
+            // todo normal response
             return response('visi testi done <a href="/create-test">uztaisi testu </a>');
         }
 

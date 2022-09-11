@@ -40,6 +40,10 @@ Route::get('callback/google', [GoogleSocialiteController::class, 'handleCallback
 
 Route::get('/logout', [UserController::class, 'logout']);
 
+Route::get('/auth', function () {
+    return view('auth.auth');
+});
+
 
 
 
