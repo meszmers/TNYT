@@ -2,14 +2,18 @@
 
 return [
    'header' => [
-    [
+       [
+       'title' => 'Home',
+       'href' => '/home'
+       ],
+       [
         'title' => 'Create test',
         'href' => '/create-test'
-    ],
-    [
+       ],
+       [
         'title' => 'Analytics',
         'href' => '/analytics'
-    ]
+       ]
    ],
     'tinder-image-count' => [
         [

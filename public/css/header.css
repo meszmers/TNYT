@@ -1,18 +1,2 @@
-.container {
-    display: flex;
-    justify-content: space-between;
-    justify-items: center;
-    gap: 15px;
-    margin: auto;
-    padding: 20px 0;
-}
 
-.menu-element {
-    text-decoration: none;
-    color: black;
-}
-
-.login-button {
-    padding: 0 30px;
-}
 

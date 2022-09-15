@@ -21,7 +21,7 @@
         </a>
 
 
-        <div class="test-container">
+        <div class="test-container right">
             <a style="color: white" href="create-test/battle-royale">
                 <div style="text-align: center">
                     <div style="width: 300px; margin: 100px auto auto auto;">
@@ -39,8 +39,11 @@
 
 <style>
     .test-container {
-        background-color: #727273;
+        background: linear-gradient(to right, #ff4b28, #ff228c);
         width: 45%;
-        height: 700px;
+        height: 600px;
+    }
+    .test-container.right {
+        background: linear-gradient(to right, #ff228c, #ff4b28);
     }
 </style>

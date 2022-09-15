@@ -25,24 +25,32 @@ use Illuminate\Support\Facades\Route;
  */
 
 Route::get('/', function () {
+   return view('landingPage');
+});
+
+Route::get('/home', function () {
     return redirect('/login');
 });
 
+Route::get('/auth', function (Illuminate\Http\Request $request) {
 
-Route::get('/login', [WebpageController::class, 'login'])->name('login');
+    if (\Illuminate\Support\Facades\Auth::check()) {
+        return redirect('/home');
+    }
+
+    $type = $request->get('type');
+
+    return view('auth', ['type' => $type]);
+})->name('login');
+
 Route::post('/login', [UserController::class, 'signUp']);
-
-Route::get('/register', [WebpageController::class, 'register']);
 Route::post('/register', [UserController::class, 'registerUser']);
 
-Route::get('auth/google', [GoogleSocialiteController::class, 'redirectToGoogle']);
-Route::get('callback/google', [GoogleSocialiteController::class, 'handleCallback']);
+Route::get('auth/google', [UserController::class, 'redirectToGoogle']);
+Route::get('callback/google', [UserController::class, 'handleGoogleCallback']);
 
 Route::get('/logout', [UserController::class, 'logout']);
 
-Route::get('/auth', function () {
-    return view('auth.auth');
-});
 
 
 
@@ -55,14 +63,18 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/test', [TestController::class, 'test']);
     Route::post('/test', [TestController::class, 'makeTest']);
 
+    Route::post('/profile/update', [UserController::class, 'updateUserProfile']);
+
+    Route::get('/analytics', function () {
+       return view('analytics');
+    });
+
     Route::get('/create-test/tinder', [WebpageController::class, 'setupTest']);
     Route::post('/create-test/tinder', [TestController::class, 'createTinderTest']);
 
     Route::get('/create-test', [WebpageController::class, 'test']);
 
 });
-
-Route::get('/test-landing', [WebpageController::class, 'testLanding']);
 
 
 Route::group(['prefix' => 'api/v1'], function () {

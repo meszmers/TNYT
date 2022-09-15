@@ -1,46 +1,49 @@
-
-    <div class="container" id="main">
-        <div class="sign-up">
-            <form action="#">
-                <h1>Create Account</h1>
-                <div class="social-container">
+<div class="container" id="main">
+    <div class="sign-up">
+        <form action="#">
+            <h1>Create Account</h1>
+            <div class="social-container">
+                <a href="auth/google">
                     <img src="../../google_login.png">
-                </div>
-                <p>or use your email for registeration</p>
-                <input type="text" name="txt" placeholder="Name" required="">
-                <input type="email" name="email" placeholder="Email" required="">
-                <input type="password" name="pswd" placeholder="Password" required="">
-                <button>Sign Up</button>
-            </form>
-        </div>
-        <div class="sign-in">
-            <form action="#">
-                <h1>Sign In</h1>
-                <div class="social-container">
+                </a>
+            </div>
+            <p>or use your email for registeration</p>
+            <input type="text" name="txt" placeholder="Name" required="">
+            <input type="email" name="email" placeholder="Email" required="">
+            <input type="password" name="pswd" placeholder="Password" required="">
+            <button>Sign Up</button>
+        </form>
+    </div>
+    <div class="sign-in">
+        <form action="#">
+            <h1>Sign In</h1>
+            <div class="social-container">
+                <a href="auth/google">
                     <img src="../../google_login.png">
-                </div>
-                <p>or use your account</p>
-                <input type="email" name="email" placeholder="Email" required="">
-                <input type="password" name="pswd" placeholder="Password" required="">
-                <a href="#">Forget your password?</a>
-                <button>Sign Up</button>
-            </form>
-        </div>
-        <div class="overlay-container">
-            <div class="overlay">
-                <div class="overlay-left">
-                    <h1>Welcome Back!</h1>
-                    <p>To keep connected with us please login with your personal info</p>
-                    <button id="signIn">Sign In</button>
-                </div>
-                <div class="overlay-right">
-                    <h1>Hello friend!</h1>
-                    <p>Enter your data</p>
-                    <button id="signUp">Sign Up</button>
-                </div>
+                </a>
+            </div>
+            <p>or use your account</p>
+            <input type="email" name="email" placeholder="Email" required="">
+            <input type="password" name="pswd" placeholder="Password" required="">
+            <a href="#">Forget your password?</a>
+            <button>Sign Up</button>
+        </form>
+    </div>
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-left">
+                <h1>Welcome Back!</h1>
+                <p>To keep connected with us please login with your personal info</p>
+                <button id="signIn">Sign In</button>
+            </div>
+            <div class="overlay-right">
+                <h1>Hello friend!</h1>
+                <p>Enter your data</p>
+                <button id="signUp">Sign Up</button>
             </div>
         </div>
     </div>
+</div>
 <script type="text/javascript">
     const signUpButton = document.getElementById('signUp')
     const signInButton = document.getElementById('signIn')
@@ -56,19 +59,8 @@
 </script>
 
 <style>
-    *{
-        box-sizing: border-box;
-        font-family: 'Nunito', sans-serif;
-    }
-    body {
-        align-items: center;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        background: #f6f5f7;
-        min-height: 100%;
-    }
     .container {
+        margin: 100px auto auto auto;
         position: relative;
         width: 768px;
         max-width: 100%;
@@ -218,16 +210,6 @@
     }
     .social-container {
         margin: 20px 0;
-    }
-    .social-container a {
-        height: 40px;
-        width: 40px;
-        margin: 0 5px;
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        border: 1px solid #ccc;
-        border-radius: 50px;
     }
 
 

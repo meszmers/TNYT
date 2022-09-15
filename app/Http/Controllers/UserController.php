@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\UserProfile;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Laravel\Socialite\Facades\Socialite;
+use Stevebauman\Location\Facades\Location;
 
 class UserController extends Controller
 {
@@ -83,9 +86,73 @@ class UserController extends Controller
 
         $newUser->save();
 
+        $userProfile = new UserProfile();
+        $userProfile->user_id = $newUser->id;
+
+        $userProfile->save();
+
         Auth::login($newUser);
 
         return redirect('/');
 
+    }
+
+    public function updateUserProfile(Request $request) {
+
+        $userProfile = UserProfile::where('user_id', Auth::id())->first();
+
+        if (empty($userProfile)) {
+            $userProfile = new UserProfile();
+        }
+
+        $country = $request->get('country') ?: Location::get($request->ip());
+        $DOB = $request->get('dob');
+        $gender = $request->get('gender');
+
+        $userProfile->user_id = Auth::id();
+        $userProfile->contry = $country;
+        $userProfile->dob = $DOB;
+        $userProfile->gender = $gender;
+        $userProfile->ip = $request->ip();
+
+        $userProfile->save();
+
+    }
+
+    public function redirectToGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+
+    public function handleGoogleCallback()
+    {
+        try {
+
+            $user = Socialite::driver('google')->user();
+
+            $findUser = User::where('social_id', $user->id)->first();
+
+            if($findUser){
+
+                Auth::login($findUser);
+
+            } else {
+                $newUser = User::create([
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'social_id'=> $user->id,
+                    'social_type'=> 'google',
+                    'password' => encrypt('my-google')
+                ]);
+
+                Auth::login($newUser);
+
+            }
+            return redirect('/');
+
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+        }
     }
 }

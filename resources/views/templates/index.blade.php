@@ -20,6 +20,7 @@
         *::before,
         *::after {
             box-sizing: border-box;
+            font-family: 'Nunito', sans-serif;
         }
 
         /* Remove default margin */
@@ -90,12 +91,6 @@
             }
         }
 
-    </style>
-
-    <style>
-        body {
-            font-family: 'Nunito', sans-serif;
-        }
     </style>
 </head>
 <body class="antialiased" style="width: 1100px; margin: auto">
